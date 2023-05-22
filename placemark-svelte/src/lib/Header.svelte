@@ -8,6 +8,6 @@
         <TitleBar title={'Placemark Services Inc.'} subTitle={'Sign up or Log in'} />
     </div>
     <div class="column">
-        <WelcomeNavigator />
+        <slot />
     </div>
 </div>
