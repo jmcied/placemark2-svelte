@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-//	import { placemarkService } from "../services/placemark-service";
+	import { placemarkService } from "../services/placemark-service";
 
 	let firstName = "";
 	let lastName = "";
@@ -8,10 +8,15 @@
 	let password = "";
 	let errorMessage = "";
 
-	async function signup() {
-		console.log(`attemting to sign up email: ${email}`);
-		goto("/");	
-	}    
+    async function signup() {
+        console.log(`attemting to sign up email: ${email}`);
+        let success = await placemarkService.signup(firstName, lastName, email, password);
+        if (success) {
+            goto("/");
+        } else {
+            errorMessage = "Error Trying to sign up";
+        }
+    }
 </script>
 
 <form on:submit|preventDefault={signup}>
