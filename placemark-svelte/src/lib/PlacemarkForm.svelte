@@ -1,4 +1,0 @@
-<div class="box">
-    <p> Make a placemark here</p>
-  </div>
-  

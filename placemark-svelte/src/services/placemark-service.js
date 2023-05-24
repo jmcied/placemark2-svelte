@@ -3,7 +3,7 @@ import axios from "axios";
 import { user } from "../stores";
 
 export const placemarkService = {
-    baseUrl: "http://localhost:4000",
+    baseUrl: "http://localhost:3000",
 
     async login(email, password) {
         try {
@@ -58,5 +58,33 @@ export const placemarkService = {
             });
             axios.defaults.headers.common["Authorization"] = "Bearer " + savedUser.token;
         }
+    },
+
+    async getPlacemarks() {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/placemarks");
+            return response.data;
+        } catch (error) {
+            return [];
+        }
+    },
+
+    async addPlacemarks(placemark) {
+        try {
+            const response = await axios.post(this.baseUrl + "/api/placemarks" + placemark.addPlacemark + "/placemarks", placemark);
+            return response.status == 200;
+        } catch (error) {
+            return false;
+        }
+    },
+
+    async getPlaces() {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/places");
+            return response.data;
+        } catch (error) {
+            return [];
+        }
     }
 };
+
